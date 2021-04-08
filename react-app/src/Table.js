@@ -1,9 +1,28 @@
 import React from 'react'
+import FetchButton from './FetchButton'
 
-export default function table() {
+ function Table(props) {
+ console.log(props.foodItem)
+
     return(
+       
         <div>
-            sometable will go here with the stored data
+        <FetchButton viewFoodItems={props.viewFoodItems}/>
+        {props.foodItem.map(food => {
+            return(
+                
+        <div>
+           {console.log(food.fats)}
+            {food.fats}
+            
+        </div>
+            )
+        
+        })}
+        
         </div>
     )
-}
+ }
+ 
+export default Table
+

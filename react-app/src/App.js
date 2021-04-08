@@ -1,65 +1,37 @@
 import FoodFacts from './FoodFacts'
 import React, { Component } from 'react'
-import TotalCal from './TotalCal'
-import Table from './Table'
+
+import Table from './Table.js'
+
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      food: {}
+      food: []
     };
+    this.viewFoodItems = this.viewFoodItems.bind(this)
   }
-
-
-
-  componentDidMount() {
+  viewFoodItems() {
+    console.log('workding')
     fetch('http://localhost:8000/api/nutrienttracker')
     .then(res => res.json())
-    .then (
-      (result) => {
-        this.setState({
-          isLoaded: true,
-          food: result
-        });
-      },
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        })
-      }
-    )
+    .then(result => this.setState({food:result}))
+    
   }
-
 
   render(){
-    const { error, isLoaded, food } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>
-    } else if(!isLoaded) {
-      return <div>Loading...</div>
-     } else {
-      return (
-    <div>
-      {this.state.food.map(food =>{
-        return(
-       <div> {food.foodname} 
-       carbs {food.carbs} fats{food.fats} 
-       pro {food.protien}  
-       total cal{food.totalcal} 
-       </div>
-       ) 
-      })}
-      
+    
+ return(
+  <div> 
+    
     <FoodFacts />
-    <TotalCal />
-    <Table />
-    </div>
-  );
-  }
-}
+    <Table foodItem={this.state.food} viewFoodItems={this.viewFoodItems} />
+  </div>
+ )
+ }
 }
 
 
