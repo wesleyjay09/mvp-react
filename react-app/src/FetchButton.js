@@ -7,7 +7,7 @@ function FetchButton(props) {
     return(
         <div>
             <button onClick={() => props.viewFoodItems()}>
-                click me
+                View foods
             </button>
             <div></div>
         </div>

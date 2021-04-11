@@ -24,6 +24,7 @@ class App extends Component {
     this.handleChangeCarbs = this.handleChangeCarbs.bind(this)
     this.handleChangeFats = this.handleChangeFats.bind(this)
     this.handleChangeProtien = this.handleChangeProtien.bind(this)
+    this.deleteFoodItem = this.deleteFoodItem.bind(this)
   }
 
   
@@ -39,6 +40,8 @@ class App extends Component {
   handleChangeProtien(event) {
     this.setState({protien: event.target.value})
   }
+
+  
   viewFoodItems() {
     fetch('http://localhost:8000/api/nutrienttracker')
     .then(res => res.json())
@@ -53,8 +56,10 @@ class App extends Component {
       })
   }
   
-  deleteFoodItem() {
-    
+  deleteFoodItem() { 
+    fetch(`http://localhost:8000/api/nutrienttracker/${this.state.foodname}`, {
+      method: 'DELETE'
+    })
   }
     
   
@@ -70,6 +75,7 @@ class App extends Component {
     handleChangeCarbs={this.handleChangeCarbs}
     handleChangeFats={this.handleChangeFats}
     handleChangeProtien={this.handleChangeProtien}
+    deleteFoodItem={this.deleteFoodItem}
     
     state={this.state}/>
     <Table foodItem={this.state.food} viewFoodItems={this.viewFoodItems} />

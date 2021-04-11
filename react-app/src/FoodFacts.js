@@ -9,7 +9,8 @@ function FoodFacts(props, state){
             <input  placeholder="Enter food here..." type='text' 
             value={state.foodname} onChange={props.handleChange}
             ></input>
-            <button onClick={() => props.createFoodItems()} >Submit</button><br></br>
+            <button onClick={() => props.createFoodItems()} >Submit</button>
+            <button onClick={() => props.deleteFoodItem()}>Delete Food</button>
             <input placeholder="fats"  
             value={state.fats} onChange={props.handleChangeFats}></input>
             <br></br>
