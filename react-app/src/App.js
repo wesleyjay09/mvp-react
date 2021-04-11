@@ -9,55 +9,55 @@ class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      food: [],
-      foodname: '',
-      carbs: 0,
-      fats: 0,
-      protien: 0,
-      totalcal: 0
+      lifterData: [],
+      lifter: '',
+      deadlift: 0,
+      benchpress: 0,
+      squat: 0
+      
     
 
     };
-    this.viewFoodItems = this.viewFoodItems.bind(this)
-    this.createFoodItems = this.createFoodItems.bind(this)
+    this.viewLifterData = this.viewLifterData.bind(this)
+    this.newLifter = this.newLifter.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleChangeCarbs = this.handleChangeCarbs.bind(this)
-    this.handleChangeFats = this.handleChangeFats.bind(this)
-    this.handleChangeProtien = this.handleChangeProtien.bind(this)
-    this.deleteFoodItem = this.deleteFoodItem.bind(this)
+    this.handleChangeDeadlift = this.handleChangeDeadlift.bind(this)
+    this.handleChangeBenchpress = this.handleChangeBenchpress.bind(this)
+    this.handleChangeSquat = this.handleChangeSquat.bind(this)
+    this.deleteLifter = this.deleteLifter.bind(this)
   }
 
   
   handleChange(event) {
-    this.setState({foodname: event.target.value})
+    this.setState({lifter: event.target.value})
   }
-  handleChangeCarbs(event) {
-    this.setState({carbs: event.target.value})
+  handleChangeDeadlift(event) {
+    this.setState({deadlift: event.target.value})
   }
-  handleChangeFats(event) {
-    this.setState({fats: event.target.value})
+  handleChangeBenchpress(event) {
+    this.setState({benchpress: event.target.value})
   }
-  handleChangeProtien(event) {
-    this.setState({protien: event.target.value})
+  handleChangeSquat(event) {
+    this.setState({squat: event.target.value})
   }
 
   
-  viewFoodItems() {
-    fetch('http://localhost:8000/api/nutrienttracker')
+  viewLifterData() {
+    fetch('http://localhost:8000/api/thousandlbclub')
     .then(res => res.json())
-    .then(result => this.setState({food:result}))
+    .then(result => this.setState({lifterData:result}))
   }
 
-  createFoodItems() {
-    fetch('http://localhost:8000/api/nutrienttracker', {
+  newLifter() {
+    fetch('http://localhost:8000/api/thousandlbclub', {
           method: 'POST',
-          body:JSON.stringify({'foodname': this.state.foodname, 'carbs': this.state.carbs, 'fats': this.state.fats, 'protien': this.state.protien, 'totalcal':this.state.totalcal }),
+          body:JSON.stringify({'lifter': this.state.lifter, 'deadlift': this.state.deadlift, 'benchpress': this.state.benchpress, 'squat': this.state.squat }),
           headers: {"Content-type": "application/json; charset=UTF-8"}
       })
   }
   
-  deleteFoodItem() { 
-    fetch(`http://localhost:8000/api/nutrienttracker/${this.state.foodname}`, {
+  deleteLifter() { 
+    fetch(`http://localhost:8000/api/thousandlbclub/${this.state.lifter}`, {
       method: 'DELETE'
     })
   }
@@ -67,18 +67,19 @@ class App extends Component {
   render(){
     
  return(
-  <div> 
+  <div class="contianer"> 
     
-    <FoodFacts foodItem={this.state.food} 
-    createFoodItems={this.createFoodItems}
+    <FoodFacts lifterData={this.state.lifterData} 
+    newLifter={this.newLifter}
     handleChange={this.handleChange}
-    handleChangeCarbs={this.handleChangeCarbs}
-    handleChangeFats={this.handleChangeFats}
-    handleChangeProtien={this.handleChangeProtien}
-    deleteFoodItem={this.deleteFoodItem}
+    handleChangeDeadlift={this.handleChangeDeadlift}
+    handleChangeBenchpress={this.handleChangeBenchpress}
+    handleChangeSquat={this.handleChangeSquat}
+    deleteLifter={this.deleteLifter}
+    viewLifterData={this.viewLifterData}
     
     state={this.state}/>
-    <Table foodItem={this.state.food} viewFoodItems={this.viewFoodItems} />
+    <Table lifterData={this.state.lifterData} viewLifterData={this.viewLifterData} />
   </div>
  )
  }

@@ -5,20 +5,22 @@ function FoodFacts(props, state){
     console.log(props)
     return(
         
-        <div>
-            <input  placeholder="Enter food here..." type='text' 
-            value={state.foodname} onChange={props.handleChange}
+        <div class="fields">
+            <input  placeholder="Lifter Name..." type='text' 
+            value={state.lifterData} onChange={props.handleChange}
             ></input>
-            <button onClick={() => props.createFoodItems()} >Submit</button>
-            <button onClick={() => props.deleteFoodItem()}>Delete Food</button>
-            <input placeholder="fats"  
-            value={state.fats} onChange={props.handleChangeFats}></input>
+            <button id="button" onClick={() => props.newLifter()} >Submit</button>
+            <button id="button" onClick={() => props.deleteLifter()}>Delete Lifter</button>
+            <button id="button" onClick={() => props.viewLifterData()}>View Lifters</button>
             <br></br>
-            <input placeholder="carbs"
-            value={state.carbs} onChange={props.handleChangeCarbs}></input> 
+            <input placeholder="deadlift"  
+            value={state.deadlift} onChange={props.handleChangeDeadlift}></input>
             <br></br>
-            <input placeholder="portein"
-            value={state.protien} onChange={props.handleChangeProtien}></input>
+            <input placeholder="benchpress"
+            value={state.benchpress} onChange={props.handleChangeBenchpress}></input> 
+            <br></br>
+            <input placeholder="squat"
+            value={state.squat} onChange={props.handleChangeSquat}></input>
             </div>
     )
 }

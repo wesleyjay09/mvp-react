@@ -6,16 +6,17 @@ import FetchButton from './FetchButton'
     return(
        
         <div className="container">
-        <FetchButton viewFoodItems={props.viewFoodItems}/>
-        {props.foodItem.map(food => {
+        <FetchButton viewLifterData={props.viewLifterData}/>
+        {props.lifterData.map(lifterData => {
             return(
-                
-        <div  key={food.id} >
-            {food.foodname}
-            fats {food.fats}
-            pro {food.protien}
-            carbs  {food.carbs}
-            totacal {food.totalcal}
+             <div>     
+        <div id="stats" key={lifterData.id}>
+            <h1>LIFTER {lifterData.lifter}</h1> 
+            <h1>DEADLIFT {lifterData.deadlift}lb</h1> 
+            <h1>BENCHPRESS {lifterData.benchpress}lb</h1>
+            <h1>SQUAT {lifterData.squat}lb</h1> 
+            <h1> TOTAL {lifterData.deadlift + lifterData.benchpress + lifterData.squat}lbs</h1>
+        </div>
         </div>
             )
         
