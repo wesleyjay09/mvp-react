@@ -1,20 +1,21 @@
 import React from 'react'
 import FetchButton from './FetchButton'
 
- function Table(props) {
- console.log(props.foodItem)
 
+ function Table(props) {
     return(
        
-        <div>
+        <div className="container">
         <FetchButton viewFoodItems={props.viewFoodItems}/>
         {props.foodItem.map(food => {
             return(
                 
-        <div>
-           {console.log(food.fats)}
-            {food.fats}
-            
+        <div  key={food.id} >
+            {food.foodname}
+            fats {food.fats}
+            pro {food.protien}
+            carbs  {food.carbs}
+            totacal {food.totalcal}
         </div>
             )
         

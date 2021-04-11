@@ -32,6 +32,14 @@ app.get("/api/nutrienttracker", async(req, res)=>{
     }
 })
 
+app.get("/api/nutrienttracker/:id", async(req, res)=>{
+    try {
+        const { id } = req.params
+    const getFood = await pool.query("DELETE * FROM nutritioninput WHERE foodname = ($1)",[id])
+      } catch (err) {
+        console.error(err.message)
+    }
+})
 
 
 

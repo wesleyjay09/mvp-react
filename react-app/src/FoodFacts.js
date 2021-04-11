@@ -1,20 +1,28 @@
 import React from 'react'
 
 
-function FoodFacts(){
+function FoodFacts(props, state){
+    console.log(props)
     return(
+        
         <div>
-            <input placeholder="Enter food here..."></input>
-            <button>Submit</button><br></br>
-            <input placeholder="fats"></input>
+            <input  placeholder="Enter food here..." type='text' 
+            value={state.foodname} onChange={props.handleChange}
+            ></input>
+            <button onClick={() => props.createFoodItems()} >Submit</button><br></br>
+            <input placeholder="fats"  
+            value={state.fats} onChange={props.handleChangeFats}></input>
             <br></br>
-            <input placeholder="carbs"></input> 
+            <input placeholder="carbs"
+            value={state.carbs} onChange={props.handleChangeCarbs}></input> 
             <br></br>
-            <input placeholder="portein"></input>
-            
-            
-        </div>
+            <input placeholder="portein"
+            value={state.protien} onChange={props.handleChangeProtien}></input>
+            </div>
     )
 }
 
+
 export default FoodFacts;
+
+
